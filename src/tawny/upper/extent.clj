@@ -58,13 +58,10 @@
    :comment
    "A physical extent in time or space."
    :subclass
-   (owlsome hasDimension Dimension)
-   (atmost 3 hasDimension SpatialDimension)
-   (atmost 1 hasDimension TemporalDimension)
+   (atmost 4 hasDimension Dimension)
    )
  
  (defclass ExtentProperty)
-
  )
 
 (as-subclasses 
@@ -100,57 +97,50 @@
      :comment
      (format comment "XDimension" "YDimension"))))
 
+
 (as-subclasses 
  Region
- (defclass KindOfRegion)
-
- (defclass NDimensionalRegion)
- )
-
-
-(as-subclasses 
- KindOfRegion
  (defclass SpatialTemporalRegion
   :comment 
   "A region in spacetime"
   :equivalent
-  (owlsome hasDimension 
-           SpatialDimension 
-           TemporalDimension))
+  (owland
+   (owlsome hasDimension SpatialDimension)
+   (owlsome hasDimension TemporalDimension))
+  )
 
  (defclass SpatialRegion
    :comment 
    "A region in space."
    :equivalent
-   (only hasDimension SpatialDimension)
+   (owlsome hasDimension SpatialDimension)
    )
+   
  (defclass TemporalRegion
    :comment 
    "A region in time."
    :equivalent
-   (only hasDimension TemporalDimension)
-   )
- )
+   (owlsome hasDimension TemporalDimension)
+   ))
+
+
 
 (as-subclasses 
- NDimensionalRegion
+ Region
+ :disjoint
  
  (with-suffix
    DimensionalRegion
 
-   ;; Regions are defined as something with some dimension, so we can't have a
-   ;; zero dimension region. Need to think about this. 
-
-   ;; (defclass Zero)
-
-   
    (defclass One
      :equivalent
-     (exactly 1 hasDimension Dimension))
+     (exactly 1 hasDimension Dimension)
+     )
    
    (defclass Two
      :equivalent
-     (exactly 2 hasDimension Dimension))
+     (exactly 2 hasDimension Dimension)
+     )
    
    (defclass Three
      :equivalent 
@@ -158,14 +148,25 @@
      )
 
    (defclass Four
+     :subclass SpatialTemporalRegion     
      :equivalent
-     (exactly 4 hasDimension Dimension)))
- )
+     (exactly 4 hasDimension Dimension)
+    )))
 
+(defclass NamedRegion
+  :subclass Region)
 
 (defclass Line
-  :equivalent 
-  (exactly 1 hasDimension SpatialDimension))
+  :subclass NamedRegion
+  (exactly 1 hasDimension Dimension)
+  (only hasDimension SpatialDimension)
+  )
+
+;; (defclass Duration
+;;   :subclass NamedRegion
+;;   ;:equivalent
+;;   ;(exactly 1 hasDimension TemporalDimension)
+;;   )
 
 (as-disjoint-subclasses
  ExtentProperty

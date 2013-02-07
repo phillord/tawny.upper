@@ -32,7 +32,7 @@
   ;; pizzaontology has been re-evaled
   (o/ontology-to-namespace e/extent)
   (binding [r/*reasoner-progress-monitor*
-            r/reasoner-progress-monitor-silent]
+            r/reasoner-progress-monitor-gui]
     (tests)))
 
 (use-fixtures :once ontology-reasoner-fixture)
@@ -40,3 +40,26 @@
 (deftest consistent
   (is (r/coherent?))
   (is (r/consistent?)))
+
+
+(deftest SpatialTemporalRegion
+  (is 
+   (r/isuperclass? e/SpatialTemporalRegion e/SpatialRegion))
+  (is
+   (r/isuperclass? e/SpatialTemporalRegion e/TemporalRegion)))
+
+(deftest FourDimensionalRegion)
+
+
+(deftest Line
+   (is 
+    (r/isuperclass? e/Line e/OneDimensionalRegion))
+   (is
+    (not 
+     (o/with-probe-entities
+       [c (o/owlclass 
+           "lineintime"
+           :subclass 
+           e/Line
+           (o/owlsome e/hasDimension e/TemporalDimension))]
+       (r/coherent?)))))
