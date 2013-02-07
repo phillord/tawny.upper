@@ -32,7 +32,7 @@
   ;; pizzaontology has been re-evaled
   (o/ontology-to-namespace e/extent)
   (binding [r/*reasoner-progress-monitor*
-            r/reasoner-progress-monitor-gui]
+            r/reasoner-progress-monitor-silent]
     (tests)))
 
 (use-fixtures :once ontology-reasoner-fixture)
