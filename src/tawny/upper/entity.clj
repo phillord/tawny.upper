@@ -5,8 +5,8 @@
 
 
 (defontology entity
-  :iri "http://www.russet.org.uk/extent"
-  :prefix "extent:"
+  :iri "http://www.russet.org.uk/entity"
+  :prefix "entity:"
   )
 
 (owlimport tawny.upper.top/top)
