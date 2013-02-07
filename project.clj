@@ -8,4 +8,8 @@
 
   :dependencies [[org.clojure/clojure "1.4.0"]
                  [uk.org.russet/tawny-owl "0.10-SNAPSHOT"]
-                 ])
+                 ]
+
+  :main tawny.upper.core
+
+  )
