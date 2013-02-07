@@ -15,36 +15,36 @@
 (declare-classes SpatialDimension TemporalDimension)
 
 (as-inverse
- (defoproperty hasDimension
-   :domain Region
-   :range Dimension
+  (defoproperty hasDimension
+   ;;:domain Region
+   ;;:range Dimension
    )
  (defoproperty isDimensionOf
-   :domain Dimension
-   :range Region))
+   ;;:domain Dimension
+   ;;:range Region
+   ))
 
-(as-inverse 
- (defoproperty withRespectTo
-   :domain Dimension
-   :range ReferenceFrame)
- (defoproperty givesRespectTo
-   :domain ReferenceFrame
-   :range Dimension))
+;; ;; (as-inverse 
+;; ;;  (defoproperty withRespectTo
+;; ;;    :domain Dimension
+;; ;;    :range ReferenceFrame)
+;; ;;  (defoproperty givesRespectTo
+;; ;;    :domain ReferenceFrame
+;; ;;    :range Dimension))
 
 
 (as-subclasses 
  tawny.upper.top/Extent
  :disjoint :cover
  (defclass Dimension
-   :subclass 
-   (owlsome withRespectTo ReferenceFrame)
+   ;; :subclass 
+   ;; (owlsome withRespectTo ReferenceFrame)
    :comment 
    "A axis along which entities can progress in a direction orthogonal to any other."
-
    )
  (defclass ReferenceFrame
-   :subclass 
-   (owlsome givesRespectTo Dimension)
+   ;; :subclass 
+   ;; (owlsome givesRespectTo Dimension)
    :comment
    "A central point against which an Extent is defined."
    )
