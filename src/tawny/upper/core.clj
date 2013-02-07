@@ -1,7 +1,8 @@
 
 (ns tawny.upper.core
   (:use [tawny.owl])
-  (:require [tawny.upper top extent entity]))
+  (:require [tawny.upper top extent entity])
+  (:gen-class))
 
 
 (defn save-and-import-ontology [[name ontology]]
@@ -32,3 +33,8 @@
   ;; return true if we got this far
   true
 )
+
+
+
+(defn -main [& args]
+  (save-all))
