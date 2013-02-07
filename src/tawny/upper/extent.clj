@@ -162,11 +162,11 @@
   (only hasDimension SpatialDimension)
   )
 
-;; (defclass Duration
-;;   :subclass NamedRegion
-;;   ;:equivalent
-;;   ;(exactly 1 hasDimension TemporalDimension)
-;;   )
+(defclass Duration
+  :subclass NamedRegion
+  :equivalent
+  (only hasDimension TemporalDimension)
+  (exactly 1 hasDimension TemporalDimension))
 
 (as-disjoint-subclasses
  ExtentProperty

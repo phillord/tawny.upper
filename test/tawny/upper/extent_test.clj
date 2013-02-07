@@ -63,3 +63,17 @@
            e/Line
            (o/owlsome e/hasDimension e/TemporalDimension))]
        (r/coherent?)))))
+
+
+(deftest Duration
+   (is 
+    (r/isuperclass? e/Duration e/OneDimensionalRegion))
+   (is
+    (not 
+     (o/with-probe-entities
+       [c (o/owlclass 
+           "timeinspace"
+           :subclass 
+           e/Duration
+           (o/owlsome e/hasDimension e/SpatialDimension))]
+       (r/coherent?)))))
