@@ -15,14 +15,8 @@
 (declare-classes SpatialDimension TemporalDimension)
 
 (as-inverse
-  (defoproperty hasDimension
-   ;;:domain Region
-   ;;:range Dimension
-   )
- (defoproperty isDimensionOf
-   ;;:domain Dimension
-   ;;:range Region
-   ))
+  (defoproperty hasDimension)
+  (defoproperty isDimensionOf))
 
 ;; ;; (as-inverse 
 ;; ;;  (defoproperty withRespectTo
@@ -164,9 +158,19 @@
 
 (defclass Duration
   :subclass NamedRegion
-  :equivalent
   (only hasDimension TemporalDimension)
   (exactly 1 hasDimension TemporalDimension))
+
+(defclass Area 
+  :subclass NamedRegion
+  (only hasDimension SpatialDimension)
+  (exactly 2 hasDimension SpatialDimension))
+
+(defclass Volume
+  :subclass NamedRegion
+  (only hasDimension SpatialDimension)
+  (exactly 3 hasDimension SpatialDimension))
+
 
 (as-disjoint-subclasses
  ExtentProperty

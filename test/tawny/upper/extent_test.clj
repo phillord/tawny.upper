@@ -48,9 +48,6 @@
   (is
    (r/isuperclass? e/SpatialTemporalRegion e/TemporalRegion)))
 
-(deftest FourDimensionalRegion)
-
-
 (deftest Line
    (is 
     (r/isuperclass? e/Line e/OneDimensionalRegion))
