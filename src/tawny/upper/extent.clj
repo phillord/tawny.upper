@@ -1,6 +1,7 @@
 
 (ns tawny.upper.extent
-  (:use [tawny.owl])
+  (:use [tawny.owl]
+        [tawny.upper.annotate])
   (:require [tawny.upper.top]))
 
 
@@ -10,6 +11,8 @@
   )
 
 (owlimport tawny.upper.top/top)
+(owlimport tawny.upper.annotate/annotate)
+
 
 (declare-classes Dimension Region ReferenceFrame)
 (declare-classes SpatialDimension TemporalDimension)
@@ -35,7 +38,14 @@
    ;; (owlsome withRespectTo ReferenceFrame)
    :comment 
    "A axis along which entities can progress in a direction orthogonal to any other."
-   )
+   :annotation
+   (scope 
+"No attempt is made to describe the properties of dimensions beyond that given
+in the definition. In particular, there is no assumption of a particular
+geometry. So, with respect to the earth, up and down, north and south, east
+and west would be all be valid dimensions.") )
+ 
+ ;; thinking of ditching this...
  (defclass ReferenceFrame
    ;; :subclass 
    ;; (owlsome givesRespectTo Dimension)
