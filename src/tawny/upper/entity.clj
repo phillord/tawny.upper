@@ -40,11 +40,19 @@
  DependentContinuant
 
  (defclass Role)
-
- (defclass Function)
-
  (defclass Quality)
-
  )
 
 
+(as-subclasses
+ Role
+ (defclass Function)
+ (defclass SocialRole)
+
+ )
+
+(as-subclasses
+ Function
+ (defclass BiologicalFunction)
+ (defclass MechanicalFunction)
+ )
