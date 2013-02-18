@@ -24,6 +24,7 @@
     save-and-import-ontology
     [
      ["top"  tawny.upper.top/top]
+     ["annotate" tawny.upper.annotate/annotate]
      ["extent" tawny.upper.extent/extent]
      ["entity"  tawny.upper.entity/entity]]))
 
