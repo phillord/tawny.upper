@@ -5,6 +5,7 @@
   (:require [tawny.upper.top]))
 
 
+
 (defontology extent 
   :iri "http://www.russet.org.uk/extent"
   :prefix "extent:"
@@ -43,7 +44,7 @@
 "No attempt is made to describe the properties of dimensions beyond that given
 in the definition. In particular, there is no assumption of a particular
 geometry. So, with respect to the earth, up and down, north and south, east
-and west would be all be valid dimensions.") )
+and west would be all be valid dimensions."))
  
  ;; thinking of ditching this...
  (defclass ReferenceFrame
