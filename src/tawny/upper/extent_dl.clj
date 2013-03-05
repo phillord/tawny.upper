@@ -1,4 +1,4 @@
-
+ao
 (ns tawny.upper.extent
   (:use [tawny.owl]
         [tawny.upper.annotate])
