@@ -6,9 +6,9 @@
             :url "http://www.gnu.org/licenses/lgpl-3.0.txt"
             :distribution :repo}
 
-  :dependencies [[org.clojure/clojure "1.4.0"]
+  :dependencies [[org.clojure/clojure "1.5.0"]
                  [uk.org.russet/tawny-owl "0.10-SNAPSHOT"]
-                 [uk.org.russet/tawny-skos "0.1"]
+                 [uk.org.russet/tawny-skos "0.1-SNAPSHOT"]
                  ]
 
   :main tawny.upper.core
