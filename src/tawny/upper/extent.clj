@@ -202,14 +202,23 @@ and west would be all be valid dimensions."))
  Boundedness
 
  (defclass Bounded)
- (defclass Unbounded)
- )
+ (defclass Unbounded
+   :annotation
+   (scope "As we do not presuppose any particular geometry for the universe,
+   this is orthogonal to, and not presuppose Infinite. The surface of the
+   earth is finite, yet unbounded.")))
 
 (as-disjoint-subclasses
  Finiteness
  (defclass Finite)
+ (defclass Infinite
+   :annotation 
+   (scope "The universe is finite is size, so the interpretation of this is
+   dependent on the circumstances. This reflects common usage: infinity can
+   actually be quite small, with optical infinity meaning any distance creater
+   than a few metres.")
 
- (defclass Infinite)
+   )
 )
 
 
