@@ -15,7 +15,7 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see http://www.gnu.org/licenses/.
 
-(ns tawny.upper.extent-test
+(ns tawny.upper.extent-dl-test
   (:use [clojure.test])
   (:require 
    [tawny.upper.extent :as e]
