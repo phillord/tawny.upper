@@ -47,7 +47,7 @@
   :comment "An upper design pattern."
   :annotation (scope "This design pattern is provides a simple upper pattern
 for ontology building. It is not designed to provide a complete description of
-the universe.") )
+the universe."))
 
 ;; # Import
 ;;
