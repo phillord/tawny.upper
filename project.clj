@@ -1,5 +1,5 @@
 (defproject tawny-upper "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
+  :description "An upper design pattern for tawny."
   :url "http://example.com/FIXME"
 
   :license {:name "LGPL"
