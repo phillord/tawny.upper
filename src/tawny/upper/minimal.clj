@@ -15,10 +15,8 @@
 ;; You should have received a copy of the GNU Lesser General Public License
 ;; along with this program. If not, see http://www.gnu.org/licenses/.
 
-(ns tawny.upper.top
+(ns tawny.upper.minimal
   (:use [tawny.owl] [tawny.upper.annotate]))
-
-
 
 (defontology minimal
   :iri "http://www.russet.org.uk/minimal"
@@ -44,6 +42,11 @@ This is defined after the PIMPS ontology pattern of EFO, by James Malone and col
   :comment "An entity which is a property or characteristic of another entity.
   For example, a mouse has the colour white.")
 
+
+
+
+;; oh dear. java.lang.Process nameclash.
+(ns-unmap *ns* 'Process)
 ;; snap:ProcessualEntity
 (defclass Process
   :comment "A process is an entity that exists in time by occurring or happening, has temporal parts and always involves and depends on some entity during the time it occurs.")
