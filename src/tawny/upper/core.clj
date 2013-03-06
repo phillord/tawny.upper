@@ -1,7 +1,7 @@
 
 (ns tawny.upper.core
   (:use [tawny.owl])
-  (:require [tawny.upper top extent entity])
+  (:require [tawny.upper top extent-el extent-dl entity minimal])
   (:gen-class))
 
 
@@ -25,8 +25,11 @@
     [
      ["top"  tawny.upper.top/top]
      ["annotate" tawny.upper.annotate/annotate]
-     ["extent" tawny.upper.extent/extent]
-     ["entity"  tawny.upper.entity/entity]]))
+     ["extent-el" tawny.upper.extent-el/extent]
+     ["extent-dl" tawny.upper.extent-dl/extent]
+     ["entity"  tawny.upper.entity/entity]
+     ["minimal" tawny.upper.minimal/minimal]
+     ]))
 
   (save-ontology "core.omn" :omn)
   (save-ontology "core.owl" :owl)

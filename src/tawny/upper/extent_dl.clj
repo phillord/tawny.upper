@@ -2,25 +2,25 @@
 (ns tawny.upper.extent-dl
   (:use [tawny.owl]
         [tawny.upper.annotate])
-  (:require [tawny.upper.top]))
-
+  (:require [tawny.upper.top]
+            [tawny.upper.extent-el :as el]
+            ))
 
 
 (defontology extent 
-  :iri "http://www.russet.org.uk/extent"
-  :prefix "extent:"
+  :iri "http://www.russet.org.uk/extent-dl"
+  :prefix "extentdl:"
   )
 
 (owlimport tawny.upper.top/top)
 (owlimport tawny.upper.annotate/annotate)
 
-
 (declare-classes Dimension Region ReferenceFrame)
 (declare-classes SpatialDimension TemporalDimension)
 
 (as-inverse
-  (defoproperty hasDimension)
-  (defoproperty isDimensionOf))
+  (defrefine el/hasDimension)
+  (defrefine el/isDimensionOf))
 
 ;; ;; (as-inverse 
 ;; ;;  (defoproperty withRespectTo
@@ -34,150 +34,85 @@
 (as-subclasses 
  tawny.upper.top/Extent
  :disjoint :cover
- (defclass Dimension
-   ;; :subclass 
-   ;; (owlsome withRespectTo ReferenceFrame)
-   :comment 
-   "A axis along which entities can progress in a direction orthogonal to any other."
-   :annotation
-   (scope 
-"No attempt is made to describe the properties of dimensions beyond that given
-in the definition. In particular, there is no assumption of a particular
-geometry. So, with respect to the earth, up and down, north and south, east
-and west would be all be valid dimensions."))
+ (defrefine el/Dimension)
  
  ;; thinking of ditching this...
- (defclass ReferenceFrame
-   ;; :subclass 
-   ;; (owlsome givesRespectTo Dimension)
-   :comment
-   "A central point against which an Extent is defined."
-   )
+ (defrefine el/ReferenceFrame)
 
- (defclass Point
-   :comment
-   "A location within spacetime with no dimensions."
-   )
+ (defrefine el/Point)
 
- (defclass Region
-   :comment
-   "A physical extent in time or space."
+ (defrefine el/Region
    :subclass
    (atmost 4 hasDimension Dimension)
    )
  
- (defclass ExtentProperty)
- )
+ (defrefine el/ExtentProperty))
 
 (as-subclasses 
  Dimension
  :disjoint :cover                       
- (defclass SpatialDimension
-   :comment 
-   "A dimension which defines space."
-   )
- (defclass TemporalDimension
-   :comment
-   "A dimension which defines time"
-   )
+ (defrefine el/SpatialDimension)
+ (defrefine el/TemporalDimension)
 )
 
-(as-disjoint-subclasses 
+(as-subclasses 
  SpatialDimension
  :disjoint :cover
  
- (let [comment
-       "A Spatial Dimension in a given Reference Frame which is orthogonal to 
-%s and %s."]
-
-   (defclass XDimension
-     :comment
-     (format comment "YDimension" "ZDimension")
-     )
-   (defclass YDimension
-     :comment
-     (format comment "XDimension" "ZDimension")
-     )
-   (defclass ZDimension
-     :comment
-     (format comment "XDimension" "YDimension"))))
+ (defrefine el/XDimension)
+ (defrefine el/YDimension)
+ (defrefine el/ZDimension))
 
 
-(as-subclasses 
- Region
- (defclass SpatialTemporalRegion
-  :comment 
-  "A region in spacetime"
-  :equivalent
-  (owland
-   (owlsome hasDimension SpatialDimension)
-   (owlsome hasDimension TemporalDimension))
-  )
-
- (defclass SpatialRegion
-   :comment 
-   "A region in space."
-   :equivalent
-   (owlsome hasDimension SpatialDimension)
-   )
-   
- (defclass TemporalRegion
-   :comment 
-   "A region in time."
-   :equivalent
-   (owlsome hasDimension TemporalDimension)
-   ))
-
+(defrefine el/SpatialRegion)
+(defrefine el/TemporalRegion)
+(defrefine el/SpatialTemporalRegion)
 
 
 (as-subclasses 
  Region
  :disjoint
  
- (with-suffix
-   DimensionalRegion
+ (defrefine el/OneDimensionalRegion
+   :equivalent
+   (exactly 1 hasDimension Dimension)
+   )
+ 
+ (defrefine el/TwoDimensionalRegion
+   :equivalent
+   (exactly 2 hasDimension Dimension)
+   )
+ 
+ (defrefine el/ThreeDimensionalRegion
+   :equivalent 
+   (exactly 3 hasDimension Dimension)
+   )
 
-   (defclass One
-     :equivalent
-     (exactly 1 hasDimension Dimension)
-     )
-   
-   (defclass Two
-     :equivalent
-     (exactly 2 hasDimension Dimension)
-     )
-   
-   (defclass Three
-     :equivalent 
-     (exactly 3 hasDimension Dimension)
-     )
+ (defrefine el/FourDimensionalRegion
+   :subclass SpatialTemporalRegion     
+   :equivalent
+   (exactly 4 hasDimension Dimension)
+   ))
 
-   (defclass Four
-     :subclass SpatialTemporalRegion     
-     :equivalent
-     (exactly 4 hasDimension Dimension)
-    )))
+(defrefine el/NamedRegion)
 
-(defclass NamedRegion
-  :subclass Region)
-
-(defclass Line
-  :subclass NamedRegion
+(defrefine el/Line
+  :subclass
   (exactly 1 hasDimension Dimension)
   (only hasDimension SpatialDimension)
   )
 
-(defclass Duration
+(defrefine el/Duration
   :subclass NamedRegion
   (only hasDimension TemporalDimension)
   (exactly 1 hasDimension TemporalDimension))
 
-(defclass Area 
+(defrefine el/Area 
   :subclass NamedRegion
   (only hasDimension SpatialDimension)
   (exactly 2 hasDimension SpatialDimension))
 
-(defclass Volume
+(defrefine el/Volume
   :subclass NamedRegion
   (only hasDimension SpatialDimension)
   (exactly 3 hasDimension SpatialDimension))
@@ -185,41 +120,28 @@ and west would be all be valid dimensions."))
 
 (as-disjoint-subclasses
  ExtentProperty
- (defclass Continuity)
+ (defrefine el/Continuity)
  
- (defclass Boundedness)
+ (defrefine el/Boundedness)
 
- (defclass Finiteness)
+ (defrefine el/Finiteness)
  )
 
 (as-disjoint-subclasses
  Continuity
- (defclass Continuous)
- (defclass Discontinuous))
+ (defrefine el/Continuous)
+ (defrefine el/Discontinuous))
 
 
 (as-disjoint-subclasses
  Boundedness
-
- (defclass Bounded)
- (defclass Unbounded
-   :annotation
-   (scope "As we do not presuppose any particular geometry for the universe,
-   this is orthogonal to, and not presuppose Infinite. The surface of the
-   earth is finite, yet unbounded.")))
+ (defrefine el/Bounded)
+ (defrefine el/Unbounded))
 
 (as-disjoint-subclasses
  Finiteness
- (defclass Finite)
- (defclass Infinite
-   :annotation 
-   (scope "The universe is finite is size, so the interpretation of this is
-   dependent on the circumstances. This reflects common usage: infinity can
-   actually be quite small, with optical infinity meaning any distance creater
-   than a few metres.")
-
-   )
-)
+ (defrefine el/Finite)
+ (defrefine el/Infinite))
 
 
 

@@ -18,9 +18,10 @@
 (ns tawny.upper.extent-dl-test
   (:use [clojure.test])
   (:require 
-   [tawny.upper.extent :as e]
+   [tawny.upper.extent-dl :as e]
    [tawny.owl :as o]
-   [tawny.reasoner :as r]))
+   [tawny.reasoner :as r]
+   [tawny.profile]))
 
 (defn ontology-reasoner-fixture [tests]
   ;; this should kill the reasoner factory and all reasoners which is the
@@ -42,11 +43,9 @@
   (is (r/consistent?)))
 
 
-(deftest SpatialTemporalRegion
-  (is 
-   (r/isuperclass? e/SpatialTemporalRegion e/SpatialRegion))
-  (is
-   (r/isuperclass? e/SpatialTemporalRegion e/TemporalRegion)))
+(deftest profile
+  (is (tawny.profile/inprofile? tawny.profile/profile-owl2dl)))
+
 
 (deftest Line
    (is 
