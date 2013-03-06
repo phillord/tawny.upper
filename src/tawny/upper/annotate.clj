@@ -42,7 +42,8 @@
 (defannotationproperty Scope
   :subclass owlcommentproperty
   :comment "The scope provides context to the definition and describes that
-  parts of the domain which are (or are not) intended to be described by definition." )
+  parts of the domain which are (or are not) intended to be described by definition.")
+
 
 ;; The scope function is a convienient function to apply the Scope property
 ;; above.
