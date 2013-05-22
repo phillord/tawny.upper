@@ -50,7 +50,6 @@
    )
  )
 
-
 (as-subclasses
  Continuant
  :disjoint :cover

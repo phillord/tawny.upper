@@ -24,7 +24,7 @@
    :comment 
    "A axis along which entities can progress in a direction orthogonal to any other."
    :annotation
-   (scope 
+   (scope
 "No attempt is made to describe the properties of dimensions beyond that given
 in the definition. In particular, there is no assumption of a particular
 geometry. So, with respect to the earth, up and down, north and south, east
@@ -124,17 +124,15 @@ and west would be all be valid dimensions."))
 (defclass NamedRegion
   :subclass Region)
 
-(defclass Line
-  :subclass NamedRegion)
-
-(defclass Duration
-  :subclass NamedRegion)
-
-(defclass Area 
-  :subclass NamedRegion)
-
-(defclass Volume
-  :subclass NamedRegion)
+(as-subclasses 
+ NamedRegion
+ (defclass Line)
+ 
+ (defclass Duration)
+ 
+ (defclass Area)
+ 
+ (defclass Volume))
 
 (as-subclasses
  ExtentProperty
@@ -157,8 +155,8 @@ and west would be all be valid dimensions."))
  (defclass Unbounded
    :annotation
    (scope "As we do not presuppose any particular geometry for the universe,
-   this is orthogonal to, and not presuppose Infinite. The surface of the
-   earth is finite, yet unbounded.")))
+this is orthogonal to, and not presuppose Infinite. The surface of the
+earth is finite, yet unbounded.")))
 
 (as-subclasses
  Finiteness
@@ -166,7 +164,7 @@ and west would be all be valid dimensions."))
  (defclass Infinite
    :annotation 
    (scope "The universe is finite is size, so the interpretation of this is
-   dependent on the circumstances. This reflects common usage: infinity can
-   actually be quite small, with optical infinity meaning any distance creater
-   than a few metres.")))
+dependent on the circumstances. This reflects common usage: infinity can
+actually be quite small, with optical infinity meaning any distance greater
+than a few metres.")))
 

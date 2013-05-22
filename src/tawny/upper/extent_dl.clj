@@ -14,9 +14,7 @@
 
 (owlimport tawny.upper.top/top)
 (owlimport tawny.upper.annotate/annotate)
-
-(declare-classes Dimension Region ReferenceFrame)
-(declare-classes SpatialDimension TemporalDimension)
+(owlimport el/extent)
 
 (as-inverse
   (defrefine el/hasDimension)
@@ -64,9 +62,9 @@
  (defrefine el/ZDimension))
 
 
-(defrefine el/SpatialRegion)
-(defrefine el/TemporalRegion)
-(defrefine el/SpatialTemporalRegion)
+(defcopy el/SpatialRegion)
+(defcopy el/TemporalRegion)
+(defcopy el/SpatialTemporalRegion)
 
 
 (as-subclasses 
@@ -94,7 +92,7 @@
    (exactly 4 hasDimension Dimension)
    ))
 
-(defrefine el/NamedRegion)
+(defcopy el/NamedRegion)
 
 (defrefine el/Line
   :subclass

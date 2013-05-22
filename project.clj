@@ -7,7 +7,7 @@
             :distribution :repo}
 
   :dependencies [[org.clojure/clojure "1.5.0"]
-                 [uk.org.russet/tawny-owl "0.10-SNAPSHOT"]
+                 [uk.org.russet/tawny-owl "0.11-SNAPSHOT"]
                  ]
 
   :main tawny.upper.core

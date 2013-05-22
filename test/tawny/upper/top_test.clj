@@ -10,7 +10,7 @@
   (tawny.owl/ontology-to-namespace tawny.upper.top/top)
   (tawny.reasoner/reasoner-factory :hermit)
   (binding [tawny.reasoner/*reasoner-progress-monitor*
-            tawny.reasoner/reasoner-progress-monitor-silent]
+            (atom tawny.reasoner/reasoner-progress-monitor-silent)]
     (tests)))
 
 (use-fixtures :once top-fixtures)
