@@ -39,8 +39,8 @@
 ;; interpretations; in essence, it a mechanism for the ontology developer to
 ;; say, that more complex definitions have already been considered, but are
 ;; being ignored or simplified. 
-(defannotationproperty Scope
-  :subclass owlcommentproperty
+(defaproperty Scope
+  :subproperty owl-comment-property
   :comment "The scope provides context to the definition and describes that
   parts of the domain which are (or are not) intended to be described by definition.")
 

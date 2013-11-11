@@ -53,7 +53,7 @@ the universe."))
 ;;
 ;; We import only the annotation properties for more structured comments on
 ;; the concepts. 
-(owlimport tawny.upper.annotate/annotate)
+(owl-import tawny.upper.annotate/annotate)
 
 ;; # Extent and Entity
 ;;

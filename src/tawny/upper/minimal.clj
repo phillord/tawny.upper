@@ -26,7 +26,7 @@
 This is defined after the PIMPS ontology pattern of EFO, by James Malone and colleages.")
 
 
-(owlimport tawny.upper.annotate/annotate)
+(owl-import tawny.upper.annotate/annotate)
 
 ;; obo:IAO_0000030
 (defclass InformationEntity

@@ -12,9 +12,9 @@
   :prefix "extentdl:"
   )
 
-(owlimport tawny.upper.top/top)
-(owlimport tawny.upper.annotate/annotate)
-(owlimport el/extent)
+(owl-import tawny.upper.top/top)
+(owl-import tawny.upper.annotate/annotate)
+(owl-import el/extent)
 
 (as-inverse
   (defrefine el/hasDimension)
@@ -41,7 +41,7 @@
 
  (defrefine el/Region
    :subclass
-   (atmost 4 hasDimension Dimension)
+   (at-most 4 hasDimension Dimension)
    )
  
  (defrefine el/ExtentProperty))

@@ -9,8 +9,8 @@
   :prefix "extentel:"
   )
 
-(owlimport tawny.upper.top/top)
-(owlimport tawny.upper.annotate/annotate)
+(owl-import tawny.upper.top/top)
+(owl-import tawny.upper.annotate/annotate)
 
 
 (defoproperty hasDimension)
@@ -88,23 +88,23 @@ and west would be all be valid dimensions."))
   :comment 
   "A region in spacetime"
   :equivalent
-  (owland
-   (owlsome hasDimension SpatialDimension)
-   (owlsome hasDimension TemporalDimension))
+  (owl-and
+   (owl-some hasDimension SpatialDimension)
+   (owl-some hasDimension TemporalDimension))
   )
 
  (defclass SpatialRegion
    :comment 
    "A region in space."
    :equivalent
-   (owlsome hasDimension SpatialDimension)
+   (owl-some hasDimension SpatialDimension)
    )
    
  (defclass TemporalRegion
    :comment 
    "A region in time."
    :equivalent
-   (owlsome hasDimension TemporalDimension)
+   (owl-some hasDimension TemporalDimension)
    ))
 
 (as-subclasses 

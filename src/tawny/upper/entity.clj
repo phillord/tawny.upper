@@ -29,7 +29,7 @@
   :prefix "entity:"
   )
 
-(owlimport tawny.upper.top/top)
+(owl-import tawny.upper.top/top)
 
 ;; ## Continuant and Occurrent
 ;; 

@@ -6,7 +6,7 @@
 
 
 (defn save-and-import-ontology [[name ontology]]
-  (owlimport ontology)
+  (owl-import ontology)
     
   (with-ontology ontology
     (save-ontology (str name ".omn") :omn)

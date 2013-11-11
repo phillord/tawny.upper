@@ -53,11 +53,11 @@
    (is
     (not 
      (o/with-probe-entities
-       [c (o/owlclass 
+       [c (o/owl-class 
            "lineintime"
            :subclass 
            e/Line
-           (o/owlsome e/hasDimension e/TemporalDimension))]
+           (o/owl-some e/hasDimension e/TemporalDimension))]
        (r/coherent?)))))
 
 
@@ -67,9 +67,9 @@
    (is
     (not 
      (o/with-probe-entities
-       [c (o/owlclass 
+       [c (o/owl-class 
            "timeinspace"
            :subclass 
            e/Duration
-           (o/owlsome e/hasDimension e/SpatialDimension))]
+           (o/owl-some e/hasDimension e/SpatialDimension))]
        (r/coherent?)))))
