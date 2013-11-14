@@ -6,7 +6,7 @@
             :url "http://www.gnu.org/licenses/lgpl-3.0.txt"
             :distribution :repo}
 
-  :dependencies [[uk.org.russet/tawny-owl "1.0-rc2-SNAPSHOT"]]
+  :dependencies [[uk.org.russet/tawny-owl "1.0"]]
 
   :main tawny.upper.core
 
